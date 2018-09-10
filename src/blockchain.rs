@@ -134,8 +134,9 @@ impl Chain {
     /// if the difficulty is 2 then the hash MUST have 2 leading zero's 
     fn proof_of_work(header : & mut Blockheader){
         loop {
+            // the hash would be different every loop because of the nonce.
             let hash = Chain::hash(header);
-            let slice = &hash[..header.difficulty as usize];
+            let slice = &hash[..header.difficulty as usize];    
             match slice.parse::<u32>(){
                 Ok(val)=>{
                     if val != 0{
